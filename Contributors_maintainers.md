@@ -9,5 +9,5 @@
 
 |Name|Contact Info|Institution|Notes|
 |----|------------|-----------|-----|
-|Tyson L Swetnam|tswetnam@cyverse.org|University of Arizona||
+|Tyson L. Swetnam|tswetnam@cyverse.org|University of Arizona||
 |||||
