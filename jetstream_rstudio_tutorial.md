@@ -162,7 +162,7 @@ usermod -aG sudo <new_user_name>
 ```
 sudo yum -y update
 
-sudo yum -y builddep R
+sudo yum-builddep R
 
 sudo yum -y install R
 ```
