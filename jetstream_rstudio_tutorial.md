@@ -13,7 +13,7 @@ Images can be added in-line as a reStructured text substitution, but will not re
 
 This tutorial is for installing and launching [RStudio-Server](https://www.rstudio.com/products/rstudio/) from Atmosphere / Jetstream cloud instances.
 
-Once it is running RStudio-Server is accessed via a web browser pointed to the instance IP address and port number.
+Once it is running RStudio-Server is accessed via a web browser pointed to the instance IP address and a port number (default for Rstudio-Server is `<IP-ADDRESS>:8787`).
 
 For those interested in working in an existing image with R and RStudio-Server installed, check out the quick start [Launching RStudio in Atmosphere/Jetstream](newhtmlhere).
 
@@ -90,7 +90,7 @@ Links to Apps in the DE which are found by clicking the INFO button; select and 
 
 |Image name|Version|Description|Link|
 |----------|-------|-----------|----|
-|CentOS 6.8||
+|CentOS 6.8|
 |CentOS 7.2||
 |Ubuntu 14.04.2 XFCE R QGIS|1.0|Ubuntu 14.04.3 -Trusty Tahr|[Image](https://atmo.cyverse.org/application/images/1335)|
 |Ubuntu 16.02||
@@ -99,7 +99,7 @@ Links to Apps in the DE which are found by clicking the INFO button; select and 
 
 |Image name|Version|Description|Link|
 |----------|-------|-----------|----|
-|CentOS 6.8||
+|CentOS 6.8|1.8||[Image](https://use.jetstream-cloud.org/application/images/61)|
 |CentOS 7.2|1.2|*Requires a m1.small or larger VM*|[Image](https://use.jetstream-cloud.org/application/images/161)|
 |Ubuntu 14.04.03 Development|1.1|Ubuntu 14.04.3 -Trusty Tahr|[Image](https://use.jetstream-cloud.org/application/images/99)|
 |Ubuntu 16.02||
@@ -116,25 +116,30 @@ Links to Apps in the DE which are found by clicking the INFO button; select and 
 
 Once the instance is available you can SSH into the instance using Terminal.
 
-You need to reset the password on the VM, and add users as needed:
+You should reset the password for the `user_name` and `root`:
 
 ```
-sudo passwd <username here>
+sudo passwd <user_name here>
 ```
+To add a `new_user_name`:
 
 ```
-sudo adduser <new username here>
+sudo adduser <new_user_name>
 ```
 Logging in as the ```root``` super user you can give the new user ```sudo``` priveleges
 
+``` 
+su 
+```
+
 On CentOS:
 ```
-usermod -aG wheel <username here>
+usermod -aG wheel <new_user_name>
 ```
 
 On Ubuntu:
 ```
-usermod -aG sudo <username here> 
+usermod -aG sudo <new_user_name> 
 ```
 
 ---
@@ -148,22 +153,26 @@ usermod -aG sudo <username here>
 |Prerequisite|Preparation/Notes|Link|
 |------------|-----------------|-------------|
 |R|Check for the latest version|[CRAN R-Project](https://cran.r-project.org/)|
+|Microsoft R Open|Check MRAN for the latest version|[MRAN R](https://mran.microsoft.com/documents/rro/installation/#revorinst-lin)
 |RStudio-Server|Check the for latest version|[RStudio-Server](https://www.rstudio.com/products/rstudio/download-server/)|
-|iRODS|Check for the latest version|[iRODS](http://irods.org/download/)
 
 ##CentOS
 **Task:** Installing R & RStudio-Server in CentOS Example (*check for updated versions in table above and update code below as needed*) 
 
 ```
-sudo yum update
-sudo yum install R
+sudo yum -y update
+
+sudo yum -y builddep R
+
+sudo yum -y install R
 ```
 ```
-wget https://download2.rstudio.org/rstudio-server-rhel-1.0.44-x86_64.rpm
-sudo yum install --nogpgcheck rstudio-server-rhel-1.0.44-x86_64.rpm
+wget https://download2.rstudio.org/rstudio-server-rhel-1.0.136-x86_64.rpm
+sudo yum -y install --nogpgcheck rstudio-server-rhel-1.0.136-x86_64.rpm
 sudo rm *.rpm
 ```
-**Task:** Install iRODS (*check for updated versions in table above and update code below as needed*) 
+**Task:** If iRODS are already installed on the VM skip this step. If not, install [iRODS](http://irods.org/download/)
+ (*check for updated versions in table above and update code below as needed*) 
 
 ```
 sudo rpm -i irods-icat-4.1.10-centos7-x86_64.rpm irods-database-plugin-postgres93-1.10-centos7-x86_64.rpm
@@ -174,6 +183,25 @@ Upgrade:
 ```
 sudo rpm -U irods-database-plugin-postgres93-1.10-centos7-x86_64.rpm
 sudo rpm -U irods-icat-4.1.10-centos7-x86_64.rpm
+```
+
+Initialize iRODS
+
+```
+iinit
+```
+Enter your CyVerse information 
+*Note: As of 1/2017 the CyVerse Datastore still uses an iPlantCollaborative portal.*
+
+```
+Enter the host name (DNS) of the server to connect to: data.iplantcollaborative.org
+Enter the port number: 1247
+Enter your irods user name: user_name_here
+Enter your irods zone: iplant
+Those values will be added to your environment file (for use by
+other iCommands) if the login succeeds.
+
+Enter your current iRODS password:
 ```
 
 ##Ubuntu
@@ -190,8 +218,8 @@ sudo apt-get -y install r-base
 
 ```
 sudo apt-get -y install libapparmor1 gdebi-core &&
-wget https://download2.rstudio.org/rstudio-server-0.99.903-amd64.deb &&
-sudo gdebi rstudio-server-0.99.903-amd64.deb &&
+wget https://download2.rstudio.org/rstudio-server-1.0.136-amd64.deb
+sudo gdebi sudo gdebi rstudio-server-1.0.136-amd64.deb &&
 sudo dpkg -i *.deb && 
 rm *.deb
 ```
@@ -205,7 +233,7 @@ sudo dpkg -i *.deb &&
 rm *.deb
 ```
 
-## Testing
+## Starting RStudio-Server and checknig status
 
 RStudio should now be running on your VM. In the SSH Terminal you can query to see if RStudio-Server is running
 
