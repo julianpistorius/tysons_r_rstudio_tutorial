@@ -233,7 +233,7 @@ sudo dpkg -i *.deb &&
 rm *.deb
 ```
 
-## Starting RStudio-Server and checknig status
+## Starting RStudio-Server and checking status
 
 RStudio should now be running on your VM. In the SSH Terminal you can query to see if RStudio-Server is running
 
