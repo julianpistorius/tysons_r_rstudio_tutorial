@@ -237,6 +237,8 @@ rm *.deb
 
 ## Starting RStudio-Server and checking status
 
+[Configuring RStudio-Server](https://support.rstudio.com/hc/en-us/articles/200552316-Configuring-the-Server)
+
 RStudio should now be running on your VM. In the SSH Terminal you can query to see if RStudio-Server is running
 
 ```
