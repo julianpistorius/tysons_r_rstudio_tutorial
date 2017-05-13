@@ -93,7 +93,7 @@ Links to Apps in the DE which are found by clicking the INFO button; select and 
 |CentOS 6.8|
 |CentOS 7.2||
 |Ubuntu 14.04.2 XFCE R QGIS|1.0|Ubuntu 14.04.3 -Trusty Tahr|[Image](https://atmo.cyverse.org/application/images/1335)|
-|Ubuntu 16.02||
+|Ubuntu 16.04 GUI XFCE Base|1.0|Ubuntu 16.04 - Xenial Xerus|[Image](https://atmo.cyverse.org/application/images/1453)|
 
 **Jetstream Image(s):**
 
