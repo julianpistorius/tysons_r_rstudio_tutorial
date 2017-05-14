@@ -372,6 +372,19 @@ sudo sh -c 'echo "rsession-which-r=/home/anaconda3/bin/R" >> /etc/rstudio/rserve
 rstudio-server start
 ```
 
+6. There were a couple of issues installing packages for the first time in RStudio
+
+In R:
+```
+options(repos='http://cran.rstudio.com/')
+options(download.file.method = "wget")
+```
+
+In terminal:
+```
+sudo ln -s /usr/lib/x86_64-linux-gnu/libgfortran.so.3 /usr/lib/libgfortran.so
+```
+
 ## More help/additional information
 
 <!---
