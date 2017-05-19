@@ -156,7 +156,7 @@ usermod -aG sudo <new_user_name>
 |Microsoft R Open|Check MRAN for the latest version|[MRAN R](https://mran.microsoft.com/documents/rro/installation/#revorinst-lin)
 |RStudio-Server|Check the for latest version|[RStudio-Server](https://www.rstudio.com/products/rstudio/download-server/)|
 
-##CentOS
+## CentOS
 **Task:** Installing R & RStudio-Server in CentOS Example (*check for updated versions in table above and update code below as needed*) 
 
 ```
@@ -204,7 +204,7 @@ other iCommands) if the login succeeds.
 Enter your current iRODS password:
 ```
 
-##Ubuntu
+## Ubuntu
 **Task:** Add the r-base keyserver
 
 ```
